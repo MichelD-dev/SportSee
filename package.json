@@ -9,26 +9,39 @@
     "preview": "vite preview",
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js, jsx}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2"
   },
   "devDependencies": {
+    "@storybook/addon-docs": "^7.0.0-alpha.56",
+    "@storybook/addon-essentials": "^7.0.0-alpha.56",
+    "@storybook/addon-interactions": "^7.0.0-alpha.56",
+    "@storybook/addon-links": "^7.0.0-alpha.56",
+    "@storybook/react": "^7.0.0-alpha.56",
+    "@storybook/react-vite": "^7.0.0-alpha.56",
+    "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
+    "babel-loader": "^8.3.0",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "latest",
+    "eslint-plugin-storybook": "^0.6.7",
     "husky": "^8.0.0",
     "lint-staged": "^13.0.4",
     "prettier": "^2.8.0",
+    "storybook": "^7.0.0-alpha.56",
     "vite": "^3.2.3"
   },
   "lint-staged": {
