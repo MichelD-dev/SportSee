@@ -14,9 +14,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "recharts": "^2.1.16",
     "styled-components": "^5.3.6",
     "styled-reset": "^4.4.2"
   },
@@ -41,6 +41,7 @@
     "husky": "^8.0.0",
     "lint-staged": "^13.0.4",
     "prettier": "^2.8.0",
+    "prop-types": "^15.8.1",
     "storybook": "^7.0.0-alpha.56",
     "vite": "^3.2.3"
   },
