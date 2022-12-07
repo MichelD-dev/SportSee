@@ -14,9 +14,11 @@ const Grid = () => {
     <S.StyledGrid>
       <S.Graphs>
         <S.Activity data={response?.session.sessions}></S.Activity>
-        <S.Duration>Duration</S.Duration>
-        <S.Intensity>Intensity</S.Intensity>
-        <S.Score>Score</S.Score>
+        <S.Sessions>
+          <S.Duration>Duration</S.Duration>
+          <S.Intensity>Intensity</S.Intensity>
+          <S.Score>Score</S.Score>
+        </S.Sessions>
       </S.Graphs>
       <S.Ratios>
         <div>

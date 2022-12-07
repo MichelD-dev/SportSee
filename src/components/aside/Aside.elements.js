@@ -7,7 +7,6 @@ export const StyledAside = styled.aside`
   justify-content: flex-start;
   align-items: center;
   width: 150px;
-  padding-top: 150px;
 `
 
 export const Container = styled.div`
@@ -16,6 +15,9 @@ export const Container = styled.div`
   gap: 20px;
   width: 100%;
   align-items: center;
+  justify-content: start;
+  height: 100vh;
+  margin-top: 22vh;
 `
 
 export const Copyright = styled.p`
@@ -23,7 +25,7 @@ export const Copyright = styled.p`
   transform: rotate(-90deg);
   color: #fff;
   position: absolute;
-  bottom: -10px;
+  bottom: 13vh;
   left: -22px;
   width: 150px;
 `

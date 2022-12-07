@@ -2,21 +2,23 @@ import styled from 'styled-components'
 
 export const Section = styled.section`
   display: flex;
+  height: 100vh;
 `
 
 export const Datas = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin: 60px 120px 120px;
+  margin: 50px 6vw 0;
+  gap: 30px;
 `
 
 export const StyledGreetings = styled.div`
   font-size: 1.2rem;
   align-self: start;
-  height: 170px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   gap: 30px;
