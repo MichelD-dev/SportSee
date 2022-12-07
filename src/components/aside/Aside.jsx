@@ -5,17 +5,15 @@ import Button3 from './buttons/Button3'
 import Button4 from './buttons/Button4'
 
 const Aside = () => (
-  <>
-    <StyledAside>
-      <Container>
-        <Button1 />
-        <Button2 />
-        <Button3 />
-        <Button4 />
-        <Copyright>Copyright, SportSee {new Date().getFullYear()}</Copyright>
-      </Container>
-    </StyledAside>
-  </>
+  <StyledAside>
+    <Container>
+      <Button1 />
+      <Button2 />
+      <Button3 />
+      <Button4 />
+      <Copyright>Copyright, SportSee {new Date().getFullYear()}</Copyright>
+    </Container>
+  </StyledAside>
 )
 
 export default Aside

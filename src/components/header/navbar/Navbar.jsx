@@ -1,13 +1,13 @@
-import {Li, Nav, Ul} from './Navbar.elements'
+import {Nav, StyledLink, Ul} from './Navbar.elements'
 
 const Navbar = () => {
   return (
     <Nav>
       <Ul>
-        <Li>Accueil</Li>
-        <Li>Profil</Li>
-        <Li>Réglage</Li>
-        <Li>Communauté</Li>
+        <StyledLink to={'/'}>Accueil</StyledLink>
+        <StyledLink to={'user/12'}>Profil</StyledLink>
+        <StyledLink to={'settings'}>Réglage</StyledLink>
+        <StyledLink to={'Community'}>Communauté</StyledLink>
       </Ul>
     </Nav>
   )

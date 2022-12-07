@@ -14,7 +14,7 @@ export const StyledLogo = styled.div`
 export const LogoPersonaHead = styled(Input).attrs({
   type: 'image',
   alt: '',
-  src: './public/media/logo-head.svg',
+  src: '../media/logo-head.svg',
 })`
   position: absolute;
   right: 12px;
@@ -24,7 +24,7 @@ export const LogoPersonaHead = styled(Input).attrs({
 export const LogoPersonaBody = styled(Input).attrs({
   type: 'image',
   alt: '',
-  src: './public/media/logo-body.svg',
+  src: '../media/logo-body.svg',
 })`
   position: absolute;
   bottom: 0;

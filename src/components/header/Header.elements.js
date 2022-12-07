@@ -9,5 +9,4 @@ export const StyledHeader = styled.header`
   align-items: center;
   position: relative;
   font-size: 1.5rem;
-  position: fixed;
 `

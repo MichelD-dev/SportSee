@@ -1,12 +1,14 @@
 import {ThemeProvider} from 'styled-components'
 import GlobalStyle from './globalStyle'
 import * as S from './components/index'
-import Content, {GreetingSection} from './components/content/Content.elements'
+import {Outlet} from 'react-router-dom'
 
-const theme = {
+export const theme = {
   colors: {
     primary: '#000',
     secondary: '#e60000',
+    // tertiary: '#fbfbfb',
+    tertiary: '#cecece',
   },
 }
 
@@ -15,12 +17,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <S.Header />
-      <Content>
-        <S.Aside />
-        <GreetingSection>
-          <h1>Bonjour Thomas</h1>
-        </GreetingSection>
-      </Content>
+      <Outlet />
     </ThemeProvider>
   )
 }

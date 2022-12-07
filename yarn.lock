@@ -1971,6 +1971,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@remix-run/router@npm:1.0.4"
+  checksum: db6b1e111fb6e7e22c3d274bd6cef3054a0a989245894fde5735efd9cb46d18511e528e813ff50bcbdd7eda1c559f4e76e9d0c54396624e33396168d80b09c42
+  languageName: node
+  linkType: hard
+
 "@rollup/pluginutils@npm:^4.2.0, @rollup/pluginutils@npm:^4.2.1":
   version: 4.2.1
   resolution: "@rollup/pluginutils@npm:4.2.1"
@@ -2066,6 +2073,17 @@ __metadata:
     react-dom:
       optional: true
   checksum: 75d52429d4eee592c9a207c8588bada4e9a1fc5e48aeaa855b3a84aec6ec931d1f75a3d02fa97b5b073c3119e2927b6fb3ba81425c5fa8c1c3e27801917defe8
+  languageName: node
+  linkType: hard
+
+"@storybook/addon-console@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "@storybook/addon-console@npm:1.2.3"
+  dependencies:
+    global: ^4.3.2
+  peerDependencies:
+    "@storybook/addon-actions": "*"
+  checksum: 6c899dcb52185da526d8b98d0b7e7aaaeaeb053d4c805b499b73fa4f5a74b410da294970448a26880447f1a21f5b0563a1cd87e640200a3d714639675dccb382
   languageName: node
   linkType: hard
 
@@ -7116,7 +7134,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"global@npm:^4.4.0":
+"global@npm:^4.3.2, global@npm:^4.4.0":
   version: 4.4.0
   resolution: "global@npm:4.4.0"
   dependencies:
@@ -10116,6 +10134,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom@npm:^6.4.4":
+  version: 6.4.4
+  resolution: "react-router-dom@npm:6.4.4"
+  dependencies:
+    "@remix-run/router": 1.0.4
+    react-router: 6.4.4
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 95f31ae84979b404db7483309e1063fbf724046103dc8b7be7e6df79f7b81e4e63dcdb587f11d8be38e3aaf62b71f9e0d83344ef8d8c5e962de7819c793de781
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.4.4":
+  version: 6.4.4
+  resolution: "react-router@npm:6.4.4"
+  dependencies:
+    "@remix-run/router": 1.0.4
+  peerDependencies:
+    react: ">=16.8"
+  checksum: d82cc8b8bdf10e02e07d089f9d82987fa161c2f07583c973126f5f8a052c02b3d2339891ddbda1738f877755a407e2c35f0dc1ac52aaa1d2c853774d19753ea7
+  languageName: node
+  linkType: hard
+
 "react-smooth@npm:^2.0.1":
   version: 2.0.1
   resolution: "react-smooth@npm:2.0.1"
@@ -11121,6 +11163,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sportsee@workspace:."
   dependencies:
+    "@storybook/addon-console": ^1.2.3
     "@storybook/addon-docs": ^7.0.0-alpha.56
     "@storybook/addon-essentials": ^7.0.0-alpha.56
     "@storybook/addon-interactions": ^7.0.0-alpha.56
@@ -11145,6 +11188,7 @@ __metadata:
     prop-types: ^15.8.1
     react: ^18.2.0
     react-dom: ^18.2.0
+    react-router-dom: ^6.4.4
     recharts: ^2.1.16
     storybook: ^7.0.0-alpha.56
     styled-components: ^5.3.6
