@@ -1,6 +1,7 @@
 import {ThemeProvider} from 'styled-components'
 import GlobalStyle from '../src/globalStyle'
 import {theme} from '../src/App'
+import '@storybook/addon-console'
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},

@@ -1,12 +1,12 @@
 import React from 'react'
-import * as S from './components/index'
+import * as S from '../components/index'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-import App from './App'
-import Error404 from './pages/Error404'
+import App from '../App'
+import Error404 from '../pages/Error404'
 
 const router = createBrowserRouter(
   createRoutesFromElements(

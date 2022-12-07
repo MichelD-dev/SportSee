@@ -1,28 +1,32 @@
-import {useState, useEffect, useRef} from 'react'
-import api from './fetchDatas'
+import axios from 'axios'
+import {useState, useEffect, useRef, useMemo, useContext} from 'react'
+import {AxiosContext} from '../context/apiContext'
 
-export const useFetch = () => {
+export const useFetch = (...endpoints) => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const contextInstance = useContext(AxiosContext)
+  const instance = useMemo(() => {
+    return contextInstance || axios
+  }, [contextInstance])
   const controllerRef = useRef(new AbortController())
   const cancel = () => {
     controllerRef.current.abort()
   }
 
   const fetchData = async () => {
-    const endpoints = ['/user', '/session', '/average', '/perf']
-
     setLoading(true)
     try {
       await Promise.all(
         endpoints.map(endpoint =>
-          api.get(endpoint, {
+          instance.get(endpoint, {
             signal: controllerRef.current.signal,
           }),
         ),
       ).then(
         ([{data: user}, {data: session}, {data: average}, {data: perf}]) => {
+          console.log(user)
           setResponse({user, session, average, perf})
         },
       )
@@ -39,6 +43,8 @@ export const useFetch = () => {
   useEffect(() => {
     fetchData()
   }, [])
+
+  useEffect(() => console.log(response), [response])
 
   return {cancel, response, error, loading}
 }
