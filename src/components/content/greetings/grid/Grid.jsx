@@ -11,46 +11,48 @@ const Grid = () => {
   // useEffect(() => console.log(error), [error])
 
   return (
-    <S.StyledGrid>
-      <S.Graphs>
-        <S.Activity data={response?.session.sessions}></S.Activity>
-        <S.Sessions>
-          <S.Duration>Duration</S.Duration>
-          <S.Intensity>Intensity</S.Intensity>
-          <S.Score>Score</S.Score>
-        </S.Sessions>
-      </S.Graphs>
-      <S.Ratios>
-        <div>
-          <S.CaloriesIcon />
+    response && (
+      <S.StyledGrid>
+        <S.Graphs>
+          <S.Activity data={response.session.sessions} />
+          <S.Sessions>
+            <S.Duration>Duration</S.Duration>
+            <S.Intensity>Intensity</S.Intensity>
+            <S.Score>Score</S.Score>
+          </S.Sessions>
+        </S.Graphs>
+        <S.Ratios>
           <div>
-            <p>{response?.user.keyData.calorieCount}kCal</p>
-            <p>Calories</p>
+            <S.CaloriesIcon />
+            <div>
+              <p>{response?.user.keyData.calorieCount}kCal</p>
+              <p>Calories</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <S.ProteinIcon />
           <div>
-            <p>{response?.user.keyData.proteinCount}g</p>
-            <p>Proteines</p>
+            <S.ProteinIcon />
+            <div>
+              <p>{response?.user.keyData.proteinCount}g</p>
+              <p>Proteines</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <S.CarbsIcon />
           <div>
-            <p>{response?.user.keyData.carbohydrateCount}g</p>
-            <p>Glucides</p>
+            <S.CarbsIcon />
+            <div>
+              <p>{response?.user.keyData.carbohydrateCount}g</p>
+              <p>Glucides</p>
+            </div>
           </div>
-        </div>
-        <div>
-          <S.FatIcon />
           <div>
-            <p>{response?.user.keyData.lipidCount}g</p>
-            <p>Lipides</p>
+            <S.FatIcon />
+            <div>
+              <p>{response?.user.keyData.lipidCount}g</p>
+              <p>Lipides</p>
+            </div>
           </div>
-        </div>
-      </S.Ratios>
-    </S.StyledGrid>
+        </S.Ratios>
+      </S.StyledGrid>
+    )
   )
 }
 

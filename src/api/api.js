@@ -26,7 +26,7 @@ export const useFetch = (...endpoints) => {
         ),
       ).then(
         ([{data: user}, {data: session}, {data: average}, {data: perf}]) => {
-          console.log(user)
+          // console.log(user)
           setResponse({user, session, average, perf})
         },
       )
@@ -44,7 +44,9 @@ export const useFetch = (...endpoints) => {
     fetchData()
   }, [])
 
-  useEffect(() => console.log(response), [response])
+  // useEffect(() => console.log(response), [response])
 
   return {cancel, response, error, loading}
 }
+
+//TODO useCallback

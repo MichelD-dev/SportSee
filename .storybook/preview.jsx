@@ -1,11 +1,10 @@
-import {ThemeProvider} from 'styled-components'
-import GlobalStyle from '../src/globalStyle'
-import {theme} from '../src/App'
 import '@storybook/addon-console'
+import {globalDecorators} from './decorators'
 
 export const parameters = {
   actions: {argTypesRegex: '^on[A-Z].*'},
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
@@ -19,11 +18,4 @@ export const parameters = {
   },
 }
 
-export const decorators = [
-  Story => (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Story />
-    </ThemeProvider>
-  ),
-]
+export const decorators = globalDecorators
