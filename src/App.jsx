@@ -8,7 +8,7 @@ export const theme = {
     primary: '#000',
     secondary: '#e60000',
     tertiary: '#fbfbfb',
-    // tertiary: '#cecece',
+    // tertiary: '#080404',
   },
 }
 

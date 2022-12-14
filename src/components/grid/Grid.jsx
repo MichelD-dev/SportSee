@@ -1,24 +1,28 @@
 import * as S from './Grid.elements'
 // import {useEffect} from 'react'
-import {useFetch} from '../../../../api/api'
+import {useFetch} from '../../api/api'
+import {Activity} from './Activity'
+import {Duration} from './Duration'
+import {Intensity} from './Intensity'
+import {Score} from './Score'
 
 const Grid = () => {
   const {response} = useFetch('/user', '/session', '/average', '/perf')
 
   // useEffect(() => {
-  //   console.log(response?.user.keyData)
-  // }, [response?.user])
+  //   console.log(response)
+  // }, [response])
   // useEffect(() => console.log(error), [error])
 
   return (
     response && (
       <S.StyledGrid>
         <S.Graphs>
-          <S.Activity data={response.session.sessions} />
+          <Activity data={response.session.sessions} />
           <S.Sessions>
-            <S.Duration>Duration</S.Duration>
-            <S.Intensity>Intensity</S.Intensity>
-            <S.Score>Score</S.Score>
+            <Duration data={response.average.sessions} />
+            <Intensity data={response.perf} />
+            <Score data={response.user} />
           </S.Sessions>
         </S.Graphs>
         <S.Ratios>

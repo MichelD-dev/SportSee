@@ -1,7 +1,7 @@
 import Aside from '../aside/Aside'
 import * as S from './Content.elements'
 import Greetings from './greetings/Greetings'
-import Grid from './greetings/grid/Grid'
+import Grid from '../grid/Grid'
 import {AxiosInstanceProvider} from '../../context/apiContext'
 
 const Content = () => {

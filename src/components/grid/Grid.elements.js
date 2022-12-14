@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Input from '../../../../utils/GenericInput'
+import Input from '../../utils/GenericInput'
 
 export const StyledGrid = styled.section`
   display: grid;
@@ -22,7 +22,7 @@ export const Graphs = styled.div`
   }
 `
 
-export const Activity = styled.div`
+export const StyledActivity = styled.div`
   padding: 30px;
   grid-column: 1 / 4;
   flex-grow: 2;
@@ -38,11 +38,11 @@ export const Sessions = styled.div`
   }
 `
 
-export const Duration = styled.div``
+export const StyledDuration = styled.div``
 
-export const Intensity = styled.div``
+export const StyledIntensity = styled.div``
 
-export const Score = styled.div``
+export const StyledScore = styled.div``
 
 export const Ratios = styled.div`
   display: flex;

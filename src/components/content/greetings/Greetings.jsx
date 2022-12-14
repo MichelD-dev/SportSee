@@ -6,7 +6,7 @@ import {useParams} from 'react-router-dom'
 const Greetings = () => {
   const {id} = useParams()
 
-  const {response} = useFetch('/user')
+  const {response} = useFetch('/user', '/session', '/average', '/perf')
 
   // useEffect(() => console.log(response), [response])
 

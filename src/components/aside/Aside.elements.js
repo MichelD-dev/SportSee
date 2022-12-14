@@ -6,7 +6,8 @@ export const StyledAside = styled.aside`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 150px;
+  max-width: 100px;
+  padding: 0 20px;
 `
 
 export const Container = styled.div`
