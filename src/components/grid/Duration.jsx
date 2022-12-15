@@ -58,7 +58,7 @@ const CustomTooltip = ({active, payload}) => {
   }
 }
 
-const COLOR = '#ffffff73'
+const COLOR = '#ffffffa4'
 
 export const Duration = ({data}) => {
   return (
@@ -67,7 +67,7 @@ export const Duration = ({data}) => {
         <LineChart
           data={data}
           style={{background: 'red', borderRadius: '10px'}}
-          margin={{top: 70, right: 30, bottom: 10, left: 30}}
+          margin={{top: 70, right: 20, bottom: 10, left: 20}}
         >
           <text
             x="15%"

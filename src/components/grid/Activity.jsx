@@ -43,6 +43,10 @@ const CustomizedAxisTick = ({payload, x, y}) => (
   </g>
 )
 
+const CustomNames = ({children}) => (
+  <span style={{color: '#74798c', margin: '0 10px 0 3px'}}>{children} </span>
+)
+
 export const Activity = ({data}) => {
   return (
     <StyledActivity>
@@ -66,14 +70,14 @@ export const Activity = ({data}) => {
               background: 'red',
               border: 'none',
               outline: 'none',
-              width: '55px',
-              height: '100px',
+              width: '50px',
+              height: '80px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               textAlign: 'center',
-              lineHeight: '2.8rem',
-              fontSize: '.7rem',
+              lineHeight: '2.2rem',
+              fontSize: '.5rem',
             }}
           />
           <text dy={+20} width={200}>
@@ -84,13 +88,14 @@ export const Activity = ({data}) => {
             verticalAlign="top"
             align="right"
             iconType={'circle'}
+            iconSize={8}
           />
           <Bar
             dataKey="kilogram"
             fill="#282d30"
-            radius={[7, 7, 0, 0]}
             barSize={7}
-            name={'Poids (kg)'}
+            radius={[7, 7, 0, 0]}
+            name={<CustomNames>Poids (kg)</CustomNames>}
             yAxisId={1}
           />
           <Bar
@@ -99,7 +104,7 @@ export const Activity = ({data}) => {
             fill="#e60000"
             barSize={7}
             radius={[7, 7, 0, 0]}
-            name={'Calories brûlées (kCal)'}
+            name={<CustomNames>Calories brûlées (kCal)</CustomNames>}
           />
         </BarChart>
       </ResponsiveContainer>
@@ -130,4 +135,8 @@ Activity.propTypes = {
       calories: PropTypes.number,
     }),
   ),
+}
+
+CustomNames.propTypes = {
+  children: PropTypes.node,
 }

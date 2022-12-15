@@ -63,6 +63,10 @@ export const Ratios = styled.div`
     }
     p:first-child {
       color: ${({theme}) => theme.colors.primary};
+      font-size: 1.1rem;
+    }
+    p:last-child {
+      font-size: 0.9rem;
     }
   }
 `
