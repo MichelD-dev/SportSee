@@ -8,7 +8,14 @@ const Content = () => {
   return (
     <S.Section>
       <Aside />
-      <AxiosInstanceProvider config={{baseURL: 'http://localhost:4001'}}>
+      <AxiosInstanceProvider
+        config={{
+          baseURL:
+            import.meta.env.MODE === 'development'
+              ? import.meta.env.VITE_MOCKED_DATA
+              : import.meta.env.VITE_SERVER_DATA,
+        }}
+      >
         <S.Datas>
           <Greetings />
           <Grid />

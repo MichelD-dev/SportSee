@@ -6,19 +6,30 @@ import {useParams} from 'react-router-dom'
 const Greetings = () => {
   const {id} = useParams()
 
-  const {response} = useFetch('/user', '/session', '/average', '/perf')
+  const {response} = useFetch(
+    import.meta.env.MODE === 'development'
+      ? ['/user', '/session', '/average', '/perf']
+      : [
+          `/user/${id}`,
+          `/user/${id}/activity`,
+          `/user/${id}/average-sessions`,
+          `/user/${id}/performance`,
+        ],
+  )
 
   // useEffect(() => console.log(response), [response])
 
   const userName =
-    response?.user.id === +id ? response?.user.userInfos.firstName : ''
+    response?.user?.id === +id ? response?.user.userInfos.firstName : ''
 
   return (
     <StyledGreetings>
       <h1>
-        Bonjour <span>{userName}</span>
+        Bonjour <span>{response ? userName : 'invité'}</span>
       </h1>
-      <p>Félicitations! Vous avez explosé vos objectifs hier 👏</p>
+      {response && (
+        <p>Félicitations! Vous avez explosé vos objectifs hier 👏</p>
+      )}
     </StyledGreetings>
   )
 }

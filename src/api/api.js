@@ -2,7 +2,7 @@ import axios from 'axios'
 import {useState, useEffect, useRef, useMemo, useContext} from 'react'
 import {AxiosContext} from '../context/apiContext'
 
-export const useFetch = (...endpoints) => {
+export const useFetch = endpoints => {
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -24,12 +24,23 @@ export const useFetch = (...endpoints) => {
             signal: controllerRef.current.signal,
           }),
         ),
-      ).then(
-        ([{data: user}, {data: session}, {data: average}, {data: perf}]) => {
-          // console.log(user)
-          setResponse({user, session, average, perf})
-        },
-      )
+      ).then(data => {
+        setResponse(
+          import.meta.env.MODE === 'development'
+            ? {
+                user: data[0].data,
+                session: data[1].data,
+                average: data[2].data,
+                perf: data[3].data,
+              }
+            : {
+                user: data[0].data.data,
+                session: data[1].data.data,
+                average: data[2].data.data,
+                perf: data[3].data.data,
+              },
+        )
+      })
     } catch (err) {
       // response not in the 200 range
       if (err.result) setError(err.result.data)
