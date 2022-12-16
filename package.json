@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "run-p server dev",
+    "dev": "run-p server vite",
     "prod": "vite --mode production",
-    "dev": "vite",
+    "vite": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint --ignore-path .gitignore .",
