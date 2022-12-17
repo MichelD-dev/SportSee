@@ -6,7 +6,6 @@ import {Score} from './Score'
 import PropTypes from 'prop-types'
 
 const Grid = ({datas}) => {
-  console.log(datas)
   return datas ? (
     <S.StyledGrid>
       <S.Graphs>

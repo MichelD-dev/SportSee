@@ -107,7 +107,6 @@ export const Duration = ({data}) => {
             stroke={COLOR}
             fontSize={13}
             fontWeight={100}
-            // width={5}
           />
           <Tooltip
             wrapperStyle={{
@@ -141,7 +140,7 @@ Duration.propTypes = {
 }
 
 CustomCursor.propTypes = {
-  points: PropTypes.number,
+  points: PropTypes.array,
 }
 
 CustomTooltip.propTypes = {

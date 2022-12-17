@@ -17,6 +17,7 @@ export const Graphs = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 3vh;
+  width: 59vw;
   > div:first-child {
     background-color: ${({theme}) => theme.colors.tertiary};
   }

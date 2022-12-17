@@ -18,7 +18,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: start;
   height: 100vh;
-  margin-top: 22vh;
+  margin-top: 16vh;
 `
 
 export const Copyright = styled.p`

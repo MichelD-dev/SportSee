@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Section = styled.section`
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 90px);
   width: 100%;
 `
 
@@ -12,8 +12,7 @@ export const Datas = styled.section`
   justify-content: flex-start;
   align-items: start;
   width: 100%;
-  margin: 50px 6vw 0;
-  /* gap: 30px; */
+  margin: 50px 6vw;
 `
 
 export const StyledGreetings = styled.div`
