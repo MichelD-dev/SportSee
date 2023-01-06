@@ -1,7 +1,8 @@
 import axios from 'axios'
-import {useState, useEffect, useRef, useContext} from 'react'
+import {useState, useRef, useContext} from 'react'
 import {AxiosContext} from '../context/apiContext'
 import PropTypes from 'prop-types'
+import {useEffectOnce} from '../utils/useEffectOnce'
 
 /**
  * useFetch custom hook.
@@ -89,11 +90,11 @@ export const useFetch = endpoints => {
   }
 
   // Fetch the data when the component mounts
-  useEffect(() => {
+  useEffectOnce(() => {
     fetchData()
 
-    // return cancel //FIXME
-  }, [])
+    return cancel
+  })
 
   return {cancel, response, error, loading}
 }
