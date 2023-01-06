@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/content/datas/grid/intensity/Intensity.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/content/datas/grid/intensity/Intensity.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {StyledIntensity} from '../Grid.elements'
+import PropTypes from 'prop-types'
+import {
+  ResponsiveContainer,
+  PolarAngleAxis,
+  PolarGrid,
+  RadarChart,
+  Radar,
+} from 'recharts'
+
+/**
+ * Translates an English word to French.
+ *
+ * @param {string} str - The English word to translate.
+ * @returns {string} - The French translation of the word.
+ */
+const englishToFrench = str => {
+  const words = {
+    energy: 'énergie',
+    strength: 'force',
+    speed: 'vitesse',
+    intensity: 'intensité',
+    cardio: 'cardio',
+    endurance: 'endurance',
+  }
+  return words[str]
+}
+
+englishToFrench.propTypes = {
+  str: PropTypes.string,
+}
+
+/**
+ * Converts a string to title case.
+ *
+ * @param {string} str - The string to convert.
+ * @returns {string} - The string in title case.
+ */
+const fromLowerToUpperCase = str => {
+  return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
+}
+
+fromLowerToUpperCase.propTypes = {
+  str: PropTypes.string,
+}
+
+/**
+ * Reformats data by translating the 'kind' property to French and converting it to title case.
+ *
+ * @param {Object} obj - The data to reformat.
+ * @param {number} obj.userId - The ID of the user.
+ * @param {Array} obj.data - An array of objects containing a 'kind' and a 'value' property.
+ * @param {Object} obj.kind - An object with keys corresponding to the 'kind' properties in the 'data' array.
+ * @returns {Array} - The reformatted data.
+ */
+const reFormatDatas = obj => {
+  return obj.data.map((nbrKind, key) => {
+    if (Object.keys(obj.kind)[key] == nbrKind.kind) {
+      const frenchDatas = englishToFrench(obj.kind[key + 1])
+      nbrKind.kind = fromLowerToUpperCase(frenchDatas)
+    }
+    return nbrKind
+  })
+}
+
+reFormatDatas.propTypes = {
+  obj: PropTypes.shape({
+    userId: PropTypes.number,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.number,
+        kind: PropTypes.string,
+      }),
+    ),
+    kind: PropTypes.objectOf(PropTypes.string),
+  }),
+}
+
+/**
+ * Displays a radar chart showing intensity data for a user.
+ *
+ * @param {Object} data - The data to display in the chart.
+ * @param {number} data.userId - The ID of the user.
+ * @param {Object} data.kind - An object with keys corresponding to the 'kind' properties in the 'data' array.
+ * @param {Array} data.data - An array of objects containing a 'kind' and a 'value' property.
+ * @returns {JSX.Element} - A JSX element representing the radar chart.
+ */
+export const Intensity = ({data}) => {
+  const datas = reFormatDatas(data)
+
+  return (
+    &lt;StyledIntensity>
+      &lt;ResponsiveContainer>
+        &lt;RadarChart
+          outerRadius={70}
+          data={datas}
+          style={{background: '#282d30', borderRadius: '10px'}}
+        >
+          &lt;PolarGrid radialLines={false} />
+          &lt;PolarAngleAxis
+            axisLine={false}
+            dataKey="kind"
+            tickLine={false}
+            tick={{
+              dy: 4,
+              fill: '#fff',
+              fontSize: 12,
+            }}
+            fontSize={12}
+          />
+          &lt;Radar dataKey="value" fill="red" fillOpacity={0.6} />
+        &lt;/RadarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/StyledIntensity>
+  )
+}
+
+Intensity.propTypes = {
+  data: PropTypes.shape({
+    userId: PropTypes.number.isRequired,
+    kind: PropTypes.object,
+    data: PropTypes.arrayOf(PropTypes.object),
+  }),
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Home.html">Home</a></li><li><a href="Input.html">Input</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Aside">Aside</a></li><li><a href="global.html#Button1">Button1</a></li><li><a href="global.html#Button2">Button2</a></li><li><a href="global.html#Button3">Button3</a></li><li><a href="global.html#Button4">Button4</a></li><li><a href="global.html#Card">Card</a></li><li><a href="global.html#Content">Content</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomNames">CustomNames</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#CustomizedAxisTick">CustomizedAxisTick</a></li><li><a href="global.html#Datas">Datas</a></li><li><a href="global.html#EmptyPage">EmptyPage</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Greetings">Greetings</a></li><li><a href="global.html#Grid">Grid</a></li><li><a href="global.html#HandleFormatTick">HandleFormatTick</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Snackbar">Snackbar</a></li><li><a href="global.html#TooltipText">TooltipText</a></li><li><a href="global.html#englishToFrench">englishToFrench</a></li><li><a href="global.html#fromLowerToUpperCase">fromLowerToUpperCase</a></li><li><a href="global.html#reFormatDatas">reFormatDatas</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 21 2022 09:50:14 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

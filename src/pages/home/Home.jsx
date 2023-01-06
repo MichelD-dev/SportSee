@@ -1,6 +1,17 @@
 import Card from '../../card/Card'
 import {StyledHome} from './Home.elements'
 
+/**
+ * Home is a component that displays user cards on the homepage.
+ *
+ * The Home component includes one 'Card' component displayed in any cases, and a conditional
+ * rendering of a second `Card` component, only rendered in production mode, as indicated by
+ * the `import.meta.env.MODE === 'production'` condition.
+ *
+ * @component
+ *
+ * @return {ReactElement} The JSX markup for the Home component
+ */
 const Home = () => {
   return (
     <StyledHome>

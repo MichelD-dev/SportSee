@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/content/datas/Datas.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/content/datas/Datas.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {Navigate, useParams} from 'react-router-dom'
+import {useFetch} from '../../../api/api'
+import Grid from './grid/Grid'
+import Greetings from './greetings/Greetings'
+import {StyledDatas} from './Datas.elements'
+import PropTypes from 'prop-types'
+
+/**
+ * A component that displays data about a user.
+ * @return {ReactElement} The component.
+ */
+const Datas = () => {
+  const {id} = useParams()
+
+  /**
+   * A custom hook that fetches data from an API.
+   * @param {Array} endpoints - An array of strings containing the API endpoints to be fetched.
+   * @return {Object} An object containing the following properties:
+   * response: the response data from the API.
+   * loading: a boolean indicating whether the data is still being fetched.
+   * error: a string containing an error message if there was an error during the fetch.
+   * cancel: a function that can be called to cancel the fetch.
+   */
+
+  const {response, loading, error} = useFetch(
+    import.meta.env.MODE === 'development'
+      ? ['/user', '/session', '/average', '/perf']
+      : [
+          `/user/${id}`,
+          `/user/${id}/activity`,
+          `/user/${id}/average-sessions`,
+          `/user/${id}/performance`,
+        ],
+  )
+
+  /**
+   * A variable that stores data about a user if the id in the response data matches the id in the URL parameters.
+   * @type {object|null}
+   */
+  const userDatas = response?.user.id === +id ? response : null
+
+  /**
+   * A variable that stores the name of a user if the id in the response data matches the id in the URL parameters.
+   * @type {string}
+   */
+  const userName =
+    response?.user.id === +id ? response.user.userInfos.firstName : ''
+
+  return (
+    &lt;>
+      {loading &amp;&amp; &lt;p>Loading...&lt;/p>}
+
+      {error &amp;&amp; &lt;Navigate to="/error404" replace={true} />}
+
+      {userDatas &amp;&amp; (
+        &lt;StyledDatas>
+          &lt;Greetings userName={userName} />
+          &lt;Grid
+            session={userDatas.session}
+            average={userDatas.average}
+            perf={userDatas.perf}
+            user={userDatas.user}
+          />
+        &lt;/StyledDatas>
+      )}
+    &lt;/>
+  )
+}
+
+Datas.propTypes = {
+  id: PropTypes.string,
+  response: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      userInfos: PropTypes.shape({
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        age: PropTypes.number,
+      }),
+      todayScore: PropTypes.number,
+      score: PropTypes.number,
+      keyData: PropTypes.objectOf(PropTypes.number),
+    }),
+    session: PropTypes.shape({
+      userId: PropTypes.number,
+      sessions: PropTypes.arrayOf(
+        PropTypes.shape({
+          day: PropTypes.string,
+          kilogram: PropTypes.number,
+          calories: PropTypes.number,
+        }),
+      ),
+    }),
+    average: PropTypes.shape({
+      userId: PropTypes.number,
+      sessions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+    }),
+    perf: PropTypes.shape({
+      userId: PropTypes.number,
+      kind: PropTypes.objectOf(PropTypes.string),
+      data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+    }),
+  }),
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+}
+
+export default Datas
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Home.html">Home</a></li><li><a href="Input.html">Input</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Aside">Aside</a></li><li><a href="global.html#Button1">Button1</a></li><li><a href="global.html#Button2">Button2</a></li><li><a href="global.html#Button3">Button3</a></li><li><a href="global.html#Button4">Button4</a></li><li><a href="global.html#Card">Card</a></li><li><a href="global.html#Content">Content</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomNames">CustomNames</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#CustomizedAxisTick">CustomizedAxisTick</a></li><li><a href="global.html#Datas">Datas</a></li><li><a href="global.html#EmptyPage">EmptyPage</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Greetings">Greetings</a></li><li><a href="global.html#Grid">Grid</a></li><li><a href="global.html#HandleFormatTick">HandleFormatTick</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Snackbar">Snackbar</a></li><li><a href="global.html#TooltipText">TooltipText</a></li><li><a href="global.html#englishToFrench">englishToFrench</a></li><li><a href="global.html#fromLowerToUpperCase">fromLowerToUpperCase</a></li><li><a href="global.html#reFormatDatas">reFormatDatas</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 21 2022 09:50:14 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

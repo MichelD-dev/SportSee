@@ -20,7 +20,7 @@ export const StyledSnackbar = styled.div`
   background: #3282f7;
   width: 300px;
   color: white;
-  padding: 30px 35px;
+  padding: 26px 35px;
   position: fixed;
   text-align: center;
   top: 120px;

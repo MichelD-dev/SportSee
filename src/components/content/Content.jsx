@@ -1,8 +1,13 @@
-import Aside from '../aside/Aside'
+import Aside from './aside/Aside'
 import * as S from './Content.elements'
 import {AxiosInstanceProvider} from '../../context/apiContext'
-import Datas from './Datas'
+import Datas from './datas/Datas'
 
+/**
+ * Content is a component that renders the main content of the page.
+ *
+ * @return {ReactElement} The JSX markup for the Content component
+ */
 const Content = () => {
   return (
     <S.Section>

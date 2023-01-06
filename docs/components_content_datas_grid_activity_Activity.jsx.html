@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/content/datas/grid/activity/Activity.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/content/datas/grid/activity/Activity.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import {StyledActivity} from '../Grid.elements'
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
+import PropTypes from 'prop-types'
+
+/**
+ *
+ * @param {Array} payload - An array of objects containing data for the chart. Each object should have a `value` property representing the value of the data and an optional `unit` property representing the unit of the data.
+ * @returns {JSX.Element} - A JSX element representing the text to be displayed in the tooltip. If the `unit` property is present in the first object in the `payload` array, the element is a `p` element containing the value and unit. Otherwise, it is a list element containing `li` elements for each object in the `payload` array.
+ */
+const TooltipText = payload => {
+  if (typeof payload[0].unit !== 'undefined') {
+    return (
+      &lt;p>
+        {payload[0].value} {payload[0].unit}
+      &lt;/p>
+    )
+  }
+  if (payload &amp;&amp; payload.length) {
+    return payload.map((prop, id) => {
+      return prop.dataKey === 'calories' ? (
+        &lt;li key={id}>{prop.value}kCal&lt;/li>
+      ) : (
+        &lt;li key={id}>{prop.value}Kg&lt;/li>
+      )
+    })
+  }
+
+  return ''
+}
+
+/**
+ * Displays a custom tooltip for a chart.
+ *
+ * @param {Object} props - The props passed to the component.
+ * @param {boolean} props.active - Whether or not the tooltip is active.
+ * @param {Array} props.payload - An array of objects containing data for the chart.
+ * @returns {JSX.Element} - A JSX element representing the custom tooltip. If the `active` property is `true` and the `payload` array exists and is not empty, the element is a list element containing the text returned by the `TooltipText` function.
+ */
+const CustomTooltip = ({active, payload}) =>
+  active &amp;&amp; payload &amp;&amp; payload.length &amp;&amp; &lt;ul>{TooltipText(payload)}&lt;/ul>
+
+/**
+ * Displays a custom tick for a chart's axis.
+ *
+ * @param {Object} props - The props passed to the component.
+ * @param {Object} props.payload - An object containing data for the tick.
+ * @param {number} props.x - The x coordinate of the tick.
+ * @param {number} props.y - The y coordinate of the tick.
+ * @returns {JSX.Element} - A JSX element representing the custom tick.
+ */
+const CustomizedAxisTick = ({payload, x, y}) => (
+  &lt;g transform={`translate(${x},${y})`}>
+    &lt;text x={0} y={0} dy={25} fill="#999">
+      {Number(payload.value.slice(8))}
+    &lt;/text>
+  &lt;/g>
+)
+
+/**
+ * Displays custom names for items in a chart's legend.
+ *
+ * @param {Object} props - The props passed to the component.
+ * @param {Array} props.children - The children of the component.
+ * @returns {JSX.Element} - A JSX element containing the children with a custom color and margin style applied.
+ */
+const CustomNames = ({children}) => (
+  &lt;span style={{color: '#74798c', margin: '0 10px 0 3px'}}>{children} &lt;/span>
+)
+
+/**
+ * Displays a chart showing daily activity.
+ *
+ * @param {Object} props - The props passed to the component.
+ * @param {Array} props.data - An array of objects containing data for the chart. Each object should have a `day` property representing the day of the week and `kilogram` and `calories` properties representing the weight and calories burned, respectively.
+ * @returns {JSX.Element} - A JSX element containing a `BarChart` element from the `react-vis` library.
+ */
+export const Activity = ({data}) => {
+  return (
+    &lt;StyledActivity>
+      &lt;ResponsiveContainer width="100%" aspect={3}>
+        &lt;BarChart data={data}>
+          &lt;CartesianGrid strokeDasharray="2 2" vertical={false} />
+          &lt;XAxis dataKey="day" tickLine={false} tick={CustomizedAxisTick} />
+          &lt;YAxis
+            orientation="right"
+            axisLine={false}
+            allowDecimals={false}
+            yAxisId={1}
+            domain={['dataMin - 10', 'dataMax + 10']}
+          />
+          &lt;YAxis hide dataKey={'calories'} yAxisId={2} />
+          &lt;Tooltip
+            content={CustomTooltip}
+            offset={40}
+            wrapperStyle={{
+              color: '#FFF',
+              background: 'red',
+              border: 'none',
+              outline: 'none',
+              width: '50px',
+              height: '80px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              textAlign: 'center',
+              lineHeight: '2.2rem',
+              fontSize: '.5rem',
+            }}
+          />
+          &lt;text dy={+20} width={200}>
+            Activité quotidienne
+          &lt;/text>
+          &lt;Legend
+            height={40}
+            verticalAlign="top"
+            align="right"
+            iconType={'circle'}
+            iconSize={8}
+          />
+          &lt;Bar
+            dataKey="kilogram"
+            fill="#282d30"
+            barSize={7}
+            radius={[7, 7, 0, 0]}
+            name={&lt;CustomNames>Poids (kg)&lt;/CustomNames>}
+            yAxisId={1}
+          />
+          &lt;Bar
+            yAxisId={2}
+            dataKey="calories"
+            fill="#e60000"
+            barSize={7}
+            radius={[7, 7, 0, 0]}
+            name={&lt;CustomNames>Calories brûlées (kCal)&lt;/CustomNames>}
+          />
+        &lt;/BarChart>
+      &lt;/ResponsiveContainer>
+    &lt;/StyledActivity>
+  )
+}
+
+TooltipText.propTypes = {
+  payload: PropTypes.arrayOf(PropTypes.object),
+}
+
+CustomTooltip.propTypes = {
+  active: PropTypes.bool,
+  payload: PropTypes.arrayOf(PropTypes.object),
+}
+
+CustomizedAxisTick.propTypes = {
+  payload: PropTypes.object,
+  x: PropTypes.number,
+  y: PropTypes.number,
+}
+
+Activity.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      day: PropTypes.string,
+      kilogram: PropTypes.number,
+      calories: PropTypes.number,
+    }),
+  ),
+}
+
+CustomNames.propTypes = {
+  children: PropTypes.node,
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Home.html">Home</a></li><li><a href="Input.html">Input</a></li></ul><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#Aside">Aside</a></li><li><a href="global.html#Button1">Button1</a></li><li><a href="global.html#Button2">Button2</a></li><li><a href="global.html#Button3">Button3</a></li><li><a href="global.html#Button4">Button4</a></li><li><a href="global.html#Card">Card</a></li><li><a href="global.html#Content">Content</a></li><li><a href="global.html#CustomCursor">CustomCursor</a></li><li><a href="global.html#CustomNames">CustomNames</a></li><li><a href="global.html#CustomTooltip">CustomTooltip</a></li><li><a href="global.html#CustomizedAxisTick">CustomizedAxisTick</a></li><li><a href="global.html#Datas">Datas</a></li><li><a href="global.html#EmptyPage">EmptyPage</a></li><li><a href="global.html#Error404">Error404</a></li><li><a href="global.html#Greetings">Greetings</a></li><li><a href="global.html#Grid">Grid</a></li><li><a href="global.html#HandleFormatTick">HandleFormatTick</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#Snackbar">Snackbar</a></li><li><a href="global.html#TooltipText">TooltipText</a></li><li><a href="global.html#englishToFrench">englishToFrench</a></li><li><a href="global.html#fromLowerToUpperCase">fromLowerToUpperCase</a></li><li><a href="global.html#reFormatDatas">reFormatDatas</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 21 2022 09:50:14 GMT+0100 (heure normale d’Europe centrale)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
