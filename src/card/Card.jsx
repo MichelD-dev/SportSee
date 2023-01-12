@@ -1,5 +1,6 @@
 import {StyledCard} from '../pages/home/Home.elements'
 import PropTypes from 'prop-types'
+import {useCallback} from 'react'
 
 /**
  * Card component.
@@ -21,12 +22,12 @@ import PropTypes from 'prop-types'
  * </Card>
  */
 const Card = ({link, children}) => {
-  const handleClick = e => {
+  const handleClick = useCallback(e => {
     import.meta.env.MODE === 'development' &&
       link.slice(6) !== '12' &&
       e.preventDefault()
     localStorage.setItem('userId', link.slice(6))
-  }
+  }, [])
 
   return (
     <StyledCard to={link} onClick={handleClick}>

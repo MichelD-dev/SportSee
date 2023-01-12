@@ -1,6 +1,6 @@
 import {Nav, StyledLink, Ul} from './Navbar.elements'
 import {useNavigate} from 'react-router-dom'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import Snackbar from '../../snackbar/Snackbar'
 
 /**
@@ -22,7 +22,7 @@ const Navbar = () => {
     navigate(user.id ? `user/${user.id}` : '/')
   }, [user])
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     const userId = localStorage.getItem('userId')
     /**
      * Sets the current user's ID.
@@ -43,7 +43,7 @@ const Navbar = () => {
      * @param {number} delay - The amount of time in milliseconds to wait before calling the callback function
      */
     setTimeout(() => setShowSnackbar(false), 2000)
-  }
+  }, [])
 
   return (
     <Nav>
@@ -59,5 +59,3 @@ const Navbar = () => {
 }
 
 export default Navbar
-
-//FIXME clck sur card puis click sur profil...

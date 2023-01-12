@@ -18,12 +18,12 @@ A component that displays a grid of data and graphs.
 @param {number} props.user.todayScore - The user's score for today.
 @param {number} props.user.score - The user's overall score.
 @param {Object} props.user.keyData - An object containing data about the user's key data.
-@param {number} props.perf - An object containing data about the user's performance.
-@param {number} props.perf.userId - The ID of the user.
-@param {Object} props.perf.kind - An object containing the types of data being displayed.
-@param {string} props.perf.kind.x - The type of data being displayed on the x-axis.
-@param {string} props.perf.kind.y - The type of data being displayed on the y-axis.
-@param {Array} props.perf.data - An array of objects containing data to be plotted on the graph.
+@param {number} props.performance - An object containing data about the user's performanceormance.
+@param {number} props.performance.userId - The ID of the user.
+@param {Object} props.performance.kind - An object containing the types of data being displayed.
+@param {string} props.performance.kind.x - The type of data being displayed on the x-axis.
+@param {string} props.performance.kind.y - The type of data being displayed on the y-axis.
+@param {Array} props.performance.data - An array of objects containing data to be plotted on the graph.
 @param {Object} props.session - An object containing data about the user's sessions.
 @param {number} props.session.userId - The ID of the user.
 @param {Array} props.session.sessions - An array of objects containing data about the user's sessions.
@@ -36,15 +36,15 @@ A component that displays a grid of data and graphs.
 @return {ReactElement} The component.
 */
 const Grid = props => {
-  const {session, average, perf, user} = props
-  // console.log(perf.data[0].kind)
+  const {session, average, performance, user} = props
+  // console.log(props)
   return props ? (
     <S.StyledGrid>
       <S.Graphs>
         <Activity data={session.sessions} />
         <S.Sessions>
           <Duration data={average.sessions} />
-          <Intensity data={perf} />
+          <Intensity data={performance} />
           <Score data={user} />
         </S.Sessions>
       </S.Graphs>
@@ -94,11 +94,12 @@ Grid.propTypes = {
     score: PropTypes.number,
     keyData: PropTypes.objectOf(PropTypes.number),
   }).isRequired,
-  perf: PropTypes.shape({
-    userId: PropTypes.number,
-    kind: PropTypes.objectOf(PropTypes.string),
-    data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
-  }).isRequired,
+  performance: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.number,
+      kind: PropTypes.string,
+    }),
+  ).isRequired,
   session: PropTypes.shape({
     userId: PropTypes.number,
     sessions: PropTypes.arrayOf(
@@ -111,7 +112,13 @@ Grid.propTypes = {
   }).isRequired,
   average: PropTypes.shape({
     userId: PropTypes.number,
-    sessions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+    // sessions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    sessions: PropTypes.arrayOf(
+      PropTypes.shape({
+        day: PropTypes.string,
+        sessionLength: PropTypes.number,
+      }),
+    ),
   }).isRequired,
 }
 

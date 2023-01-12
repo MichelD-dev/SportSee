@@ -21,7 +21,6 @@ const Datas = () => {
    * error: a string containing an error message if there was an error during the fetch.
    * cancel: a function that can be called to cancel the fetch.
    */
-
   const {response, loading, error} = useFetch(
     import.meta.env.MODE === 'development'
       ? ['/user', '/session', '/average', '/perf']
@@ -38,7 +37,7 @@ const Datas = () => {
    * @type {object|null}
    */
   const userDatas = response?.user.id === +id ? response : null
-
+  // console.log(userDatas)
   /**
    * A variable that stores the name of a user if the id in the response data matches the id in the URL parameters.
    * @type {string}
@@ -58,7 +57,7 @@ const Datas = () => {
           <Grid
             session={userDatas.session}
             average={userDatas.average}
-            perf={userDatas.perf}
+            performance={userDatas.performance}
             user={userDatas.user}
           />
         </StyledDatas>
@@ -95,10 +94,17 @@ Datas.propTypes = {
       userId: PropTypes.number,
       sessions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
     }),
-    perf: PropTypes.shape({
+    performance: PropTypes.shape({
       userId: PropTypes.number,
       kind: PropTypes.objectOf(PropTypes.string),
-      data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+      data: PropTypes.arrayOf(PropTypes.object),
+      // data: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.number)),
+      // data: PropTypes.arrayOf(
+      //   PropTypes.shape({
+      //     value: PropTypes.number,
+      //     kind: PropTypes.string,
+      //   }),
+      // ),
     }),
   }),
   loading: PropTypes.bool,

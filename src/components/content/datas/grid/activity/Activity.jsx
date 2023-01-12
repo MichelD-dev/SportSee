@@ -59,13 +59,15 @@ const CustomTooltip = ({active, payload}) =>
  * @param {number} props.y - The y coordinate of the tick.
  * @returns {JSX.Element} - A JSX element representing the custom tick.
  */
-const CustomizedAxisTick = ({payload, x, y}) => (
-  <g transform={`translate(${x},${y})`}>
-    <text x={0} y={0} dy={25} fill="#999">
-      {Number(payload.value.slice(8))}
-    </text>
-  </g>
-)
+const CustomizedAxisTick = ({payload, x, y}) => {
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dy={25} fill="#999">
+        {Number(payload.value.slice(8))}
+      </text>
+    </g>
+  )
+}
 
 /**
  * Displays custom names for items in a chart's legend.

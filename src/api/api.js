@@ -3,6 +3,7 @@ import {useState, useRef, useContext} from 'react'
 import {AxiosContext} from '../context/apiContext'
 import PropTypes from 'prop-types'
 import {useEffectOnce} from '../utils/useEffectOnce'
+import {DataModel} from '../dataModel/DataModel'
 
 /**
  * useFetch custom hook.
@@ -46,37 +47,36 @@ export const useFetch = endpoints => {
     controllerRef.current.abort()
   }
 
+  const datas = new DataModel()
+
   // Define a function that fetches the data from the API
   const fetchData = async () => {
     // Set the loading status to true
     setLoading(true)
     try {
       // Fetch data from all endpoints in parallel using Axios and store the results in an array
-      await Promise.all(
+      const responses = await Promise.all(
         endpoints.map(endpoint =>
           instance.get(endpoint, {
             // Pass the AbortController's signal to the Axios request to allow cancelling the fetch
             signal: controllerRef.current.signal,
           }),
         ),
-      ).then(data => {
-        // Set the response data depending on the current environment mode
-        setResponse(
-          import.meta.env.MODE === 'development'
-            ? {
-                //FIXME
-                user: data[0].data,
-                session: data[1].data,
-                average: data[2].data,
-                perf: data[3].data,
-              }
-            : {
-                user: data[0].data.data,
-                session: data[1].data.data,
-                average: data[2].data.data,
-                perf: data[3].data.data,
-              },
-        )
+      )
+
+      datas.setEnv(import.meta.env.MODE)
+      // Set the data for each endpoint in the DataModel
+      datas.setUser(responses[0].data)
+      datas.setActivity(responses[1].data)
+      datas.setAverage(responses[2].data)
+      datas.setPerformance(responses[3].data)
+
+      // Set the response data depending on the current environment mode
+      setResponse({
+        user: datas.getUser(),
+        session: datas.getActivity(),
+        average: datas.getAverage(),
+        performance: datas.getPerformance(),
       })
     } catch (err) {
       // If the error is a result of a non-2xx HTTP status, set the error message to the data in the response

@@ -1,6 +1,7 @@
 import axios from 'axios'
-import {useEffect, useRef, createContext} from 'react'
+import {useRef, createContext} from 'react'
 import PropTypes from 'prop-types'
+// import {DataModel} from '../dataModel/DataModel'
 
 /**
  * AxiosContext is a context object that is used to store an Axios instance. The Axios instance can be accessed by components that are descendants of an `AxiosInstanceProvider` component.
@@ -25,22 +26,21 @@ AxiosContext.displayName = 'AxiosContext'
  *
  * @return {ReactElement} The JSX markup for the AxiosInstanceProvider component
  */
-export const AxiosInstanceProvider = ({
-  config = {},
-  requestInterceptors = [],
-  responseInterceptors = [],
-  children,
-}) => {
+export const AxiosInstanceProvider = ({config = {}, children}) => {
+  // const datas = new DataModel()
+
   const instanceRef = useRef(axios.create(config))
 
-  useEffect(() => {
-    requestInterceptors.forEach(interceptor => {
-      instanceRef.current.interceptors.request.use(interceptor)
-    })
-    responseInterceptors.forEach(interceptor => {
-      instanceRef.current.interceptors.response.use(interceptor)
-    })
-  }, [])
+  instanceRef.current.interceptors.response.use(response => {
+    // console.log(response)
+    // datas.setUser(response.data.user)
+    // datas.setSession(response.data.session)
+    // datas.setAverage(response.data.average)
+    // datas.setPerf(response.data.perf)
+    // datas.setData(response.data)
+
+    return response
+  })
 
   return (
     <AxiosContext.Provider value={instanceRef.current}>
@@ -50,8 +50,6 @@ export const AxiosInstanceProvider = ({
 }
 
 AxiosInstanceProvider.propTypes = {
-  config: PropTypes.object,
-  requestInterceptors: PropTypes.array,
-  responseInterceptors: PropTypes.array,
+  config: PropTypes.object.isRequired,
   children: PropTypes.node,
 }

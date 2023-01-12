@@ -11,18 +11,6 @@ import {
 } from 'recharts'
 
 /**
- * Returns a string representing the day of the week corresponding to a given number.
- *
- * @param {number} numDay - A number representing the day of the week (1-7).
- * @returns {string} - The string representing the day of the week.
- */
-const HandleFormatTick = numDay => {
-  const days = ['L', 'M', 'M', 'J', 'V', 'S', 'D']
-
-  return days[numDay - 1]
-}
-
-/**
  * Displays a custom cursor for a chart.
  *
  * @param {Array} points - An array of points containing x and y coordinates.
@@ -136,7 +124,6 @@ export const Duration = ({data}) => {
             dataKey="day"
             axisLine={false}
             tickLine={false}
-            tickFormatter={HandleFormatTick}
             stroke={COLOR}
             fontSize={13}
             fontWeight={100}
@@ -166,7 +153,7 @@ export const Duration = ({data}) => {
 Duration.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      day: PropTypes.number,
+      day: PropTypes.string,
       sessionLength: PropTypes.number,
     }),
   ),
@@ -183,8 +170,4 @@ CustomTooltip.propTypes = {
 
 TooltipText.propTypes = {
   payload: PropTypes.arrayOf(PropTypes.object),
-}
-
-HandleFormatTick.propTypes = {
-  numDay: PropTypes.number,
 }
