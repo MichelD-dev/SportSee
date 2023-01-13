@@ -16,12 +16,7 @@ import {DataModel} from '../dataModel/DataModel'
  *
  * @param {string[]} endpoints - An array of strings containing the API endpoints to be fetched.
  *
- * @returns {Object} - An object with the following properties:
- *   - cancel: a function that cancels the pending requests
- *   - response: the response data or null if no response has been received
- *   - error: the error message or data, or an empty string if no error has occurred
- *   - loading: a boolean indicating whether a request is in progress
- *
+ * @returns {Promise<{cancel: boolean, response: object, error: string | object, loading:boolean}>}
  * @example
  * const {cancel, response, error, loading} = useFetch(['/users', '/sessions'])
  *
@@ -29,7 +24,7 @@ import {DataModel} from '../dataModel/DataModel'
  * The cancel function should be called before unmounting the component to
  * prevent memory leaks.
  */
-export const useFetch = endpoints => {
+export const useFetch = (endpoints = []) => {
   // Initialize state variables for storing the response data, error message, and loading status
   const [response, setResponse] = useState(null)
   const [error, setError] = useState('')
@@ -64,6 +59,7 @@ export const useFetch = endpoints => {
         ),
       )
 
+      // Set the chosen environment: 'development" or "production"
       datas.setEnv(import.meta.env.MODE)
       // Set the data for each endpoint in the DataModel
       datas.setUser(responses[0].data)
@@ -71,7 +67,7 @@ export const useFetch = endpoints => {
       datas.setAverage(responses[2].data)
       datas.setPerformance(responses[3].data)
 
-      // Set the response data depending on the current environment mode
+      // Set the response data with the data requested from the dataModel
       setResponse({
         user: datas.getUser(),
         session: datas.getActivity(),
@@ -89,7 +85,7 @@ export const useFetch = endpoints => {
     }
   }
 
-  // Fetch the data when the component mounts
+  // Fetch the data once when the component mounts (useEffectOnce is used because React Strict mode provokes two renders, causing erratic cancellations of the API calls)
   useEffectOnce(() => {
     fetchData()
 

@@ -27,7 +27,6 @@ const TooltipText = payload => {
   }
   if (payload && payload.length) {
     return payload.map((prop, id) => {
-      // console.log(`calories-${id}`)
       return prop.dataKey === 'calories' ? (
         <li key={`calories-${id}`}>{prop.value}kCal</li>
       ) : (

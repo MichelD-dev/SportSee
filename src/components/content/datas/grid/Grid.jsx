@@ -37,7 +37,7 @@ A component that displays a grid of data and graphs.
 */
 const Grid = props => {
   const {session, average, performance, user} = props
-  // console.log(props)
+
   return props ? (
     <S.StyledGrid>
       <S.Graphs>
@@ -112,7 +112,6 @@ Grid.propTypes = {
   }).isRequired,
   average: PropTypes.shape({
     userId: PropTypes.number,
-    // sessions: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     sessions: PropTypes.arrayOf(
       PropTypes.shape({
         day: PropTypes.string,

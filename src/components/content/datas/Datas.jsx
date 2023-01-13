@@ -37,7 +37,7 @@ const Datas = () => {
    * @type {object|null}
    */
   const userDatas = response?.user.id === +id ? response : null
-  // console.log(userDatas)
+
   /**
    * A variable that stores the name of a user if the id in the response data matches the id in the URL parameters.
    * @type {string}

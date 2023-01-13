@@ -2,7 +2,7 @@ export class DataModel {
   /**
    * Returns a string representing the day of the week corresponding to a given number.
    *
-   * @param {number} numDay - A number representing the day of the week (1-7).
+   * @param {number} dayNum - A number representing the day of the week (1-7).
    * @returns {string} - The string representing the day of the week.
    */
   translateToDays = dayNum => {
@@ -30,7 +30,7 @@ export class DataModel {
   }
 
   /**
-   * Reformats data by translating the 'kind' property to French and converting it to upper case.
+   * Reformat data by translating the 'kind' property to French and converting it to upper case.
    *
    * @param {Object} obj - The data to reformat.
    * @returns {Object} - The reformatted data.
@@ -48,27 +48,25 @@ export class DataModel {
     this.state = {...this.state, env}
   }
 
-  setDatas = data => (this.state.env === 'development' ? data : data.data)
+  defineDatas = data => (this.state.env === 'development' ? data : data.data)
 
   setUser(data) {
-    this.state.user = this.setDatas(data)
+    this.state.user = this.defineDatas(data)
   }
 
   setActivity(data) {
     this.state = {
       ...this.state,
-      activity: this.setDatas(data),
+      activity: this.defineDatas(data),
     }
-
-    console.log(this.state)
   }
 
   setAverage(data) {
     this.state = {
       ...this.state,
       average: {
-        userId: this.setDatas(data).userId,
-        sessions: this.setDatas(data).sessions.map(session => {
+        userId: this.defineDatas(data).userId,
+        sessions: this.defineDatas(data).sessions.map(session => {
           return {
             day: this.translateToDays(session.day),
             sessionLength: session.sessionLength,
@@ -81,7 +79,7 @@ export class DataModel {
   setPerformance(data) {
     this.state = {
       ...this.state,
-      performance: this.translateToFrench(this.setDatas(data)),
+      performance: this.translateToFrench(this.defineDatas(data)),
     }
   }
 
