@@ -12,7 +12,7 @@
     "lint": "eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.{js, jsx}\"",
     "prepare": "husky install",
-    "server": "npx json-server -p 4001 -w data/data.json",
+    "server": "npx json-server -p 4001 -w public/data/data.json",
     "doc": "jsdoc -c jsdoc.json"
   },
   "dependencies": {
