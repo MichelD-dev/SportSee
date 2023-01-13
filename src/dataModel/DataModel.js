@@ -48,16 +48,32 @@ export class DataModel {
     this.state = {...this.state, env}
   }
 
-  defineDatas = data => (this.state.env === 'development' ? data : data.data)
+  formatDataFromEnv = data =>
+    this.state.env === 'development' ? data : data.data
 
   setUser(data) {
-    this.state.user = this.defineDatas(data)
+    this.state.user = {
+      id: this.formatDataFromEnv(data).id,
+      keyData: {
+        calorieCount: this.formatDataFromEnv(data).keyData.calorieCount,
+        carbohydrateCount:
+          this.formatDataFromEnv(data).keyData.carbohydrateCount,
+        lipidCount: this.formatDataFromEnv(data).keyData.lipidCount,
+        proteinCount: this.formatDataFromEnv(data).keyData.proteinCount,
+      },
+      todayScore: this.formatDataFromEnv(data).todayScore,
+      userInfos: {
+        firstName: this.formatDataFromEnv(data).userInfos.firstName,
+      },
+    }
   }
 
   setActivity(data) {
     this.state = {
       ...this.state,
-      activity: this.defineDatas(data),
+      activity: {
+        sessions: this.formatDataFromEnv(data).sessions,
+      },
     }
   }
 
@@ -65,8 +81,7 @@ export class DataModel {
     this.state = {
       ...this.state,
       average: {
-        userId: this.defineDatas(data).userId,
-        sessions: this.defineDatas(data).sessions.map(session => {
+        sessions: this.formatDataFromEnv(data).sessions.map(session => {
           return {
             day: this.translateToDays(session.day),
             sessionLength: session.sessionLength,
@@ -79,7 +94,7 @@ export class DataModel {
   setPerformance(data) {
     this.state = {
       ...this.state,
-      performance: this.translateToFrench(this.defineDatas(data)),
+      performance: this.translateToFrench(this.formatDataFromEnv(data)),
     }
   }
 

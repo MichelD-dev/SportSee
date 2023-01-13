@@ -11,7 +11,7 @@
 
 ## Prerequisites
 
-In order to make the application works on your engine you must have NodeJS and npm or yarn installed.
+In order to make the application works on your engine you must have NodeJS (v.18.12) and npm or yarn installed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
