@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 # SportSee
-
+****
 #### Services de coaching sportif.
 
 #### Formation OpenClassrooms - Développeur d'applications JavaScript React
@@ -11,7 +11,8 @@
 
 ## Prerequisites
 
-In order to make the application works on your engine you must have NodeJS (v.18.12) and npm or yarn installed.
+- [NodeJS (**version 18.12**)](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
