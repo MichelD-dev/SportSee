@@ -1,3 +1,5 @@
+import Joi from 'joi'
+
 export class DataModel {
   /**
    * Returns a string representing the day of the week corresponding to a given number.
@@ -45,43 +47,104 @@ export class DataModel {
   }
 
   setEnv(env) {
-    this.state = {...this.state, env}
+    const {error, value} = Joi.string().required().validate(env)
+
+    if (error) {
+      throw new Error(error.message)
+    }
+    this.state = {...this.state, env: value}
   }
 
   formatDataFromEnv = data =>
     this.state.env === 'development' ? data : data.data
 
   setUser(data) {
+    const schema = Joi.object({
+      id: Joi.number().integer().required(),
+      keyData: Joi.object().keys({
+        calorieCount: Joi.number().integer().required(),
+        carbohydrateCount: Joi.number().integer().required(),
+        lipidCount: Joi.number().integer().required(),
+        proteinCount: Joi.number().integer().required(),
+      }),
+      todayScore: Joi.number(),
+      score: Joi.number(),
+      userInfos: Joi.object().keys({
+        firstName: Joi.string().required(),
+        lastName: Joi.string(),
+        age: Joi.number().integer(),
+      }),
+    })
+      .or('todayScore', 'score')
+      .required()
+
+    const {error, value} = schema.validate(this.formatDataFromEnv(data))
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
     this.state.user = {
-      id: this.formatDataFromEnv(data).id,
+      id: value.id,
       keyData: {
-        calorieCount: this.formatDataFromEnv(data).keyData.calorieCount,
-        carbohydrateCount:
-          this.formatDataFromEnv(data).keyData.carbohydrateCount,
-        lipidCount: this.formatDataFromEnv(data).keyData.lipidCount,
-        proteinCount: this.formatDataFromEnv(data).keyData.proteinCount,
+        calorieCount: value.keyData.calorieCount,
+        carbohydrateCount: value.keyData.carbohydrateCount,
+        lipidCount: value.keyData.lipidCount,
+        proteinCount: value.keyData.proteinCount,
       },
-      todayScore: this.formatDataFromEnv(data).todayScore,
+      todayScore: value.todayScore || value.score,
       userInfos: {
-        firstName: this.formatDataFromEnv(data).userInfos.firstName,
+        firstName: value.userInfos.firstName,
       },
     }
   }
 
   setActivity(data) {
+    const schema = Joi.object({
+      userId: Joi.number().integer().required(),
+      sessions: Joi.array().items(
+        Joi.object({
+          day: Joi.string().required(),
+          kilogram: Joi.number().integer().required(),
+          calories: Joi.number().integer().required(),
+        }),
+      ),
+    }).required()
+
+    const {error, value} = schema.validate(this.formatDataFromEnv(data))
+
+    if (error) {
+      throw new Error(error.message)
+    }
     this.state = {
       ...this.state,
       activity: {
-        sessions: this.formatDataFromEnv(data).sessions,
+        sessions: value.sessions,
       },
     }
   }
 
   setAverage(data) {
+    const schema = Joi.object({
+      userId: Joi.number().integer().required(),
+      sessions: Joi.array().items(
+        Joi.object({
+          day: Joi.number().integer().required(),
+          sessionLength: Joi.number().integer().required(),
+        }),
+      ),
+    }).required()
+
+    const {error, value} = schema.validate(this.formatDataFromEnv(data))
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
     this.state = {
       ...this.state,
       average: {
-        sessions: this.formatDataFromEnv(data).sessions.map(session => {
+        sessions: value.sessions.map(session => {
           return {
             day: this.translateToDays(session.day),
             sessionLength: session.sessionLength,
@@ -92,9 +155,33 @@ export class DataModel {
   }
 
   setPerformance(data) {
+    const schema = Joi.object({
+      userId: Joi.number().integer().required(),
+      kind: Joi.object({
+        1: Joi.string().required(),
+        2: Joi.string().required(),
+        3: Joi.string().required(),
+        4: Joi.string().required(),
+        5: Joi.string().required(),
+        6: Joi.string().required(),
+      }),
+      data: Joi.array().items(
+        Joi.object({
+          value: Joi.number().required(),
+          kind: Joi.number().required(),
+        }),
+      ),
+    }).required()
+
+    const {error, value} = schema.validate(this.formatDataFromEnv(data))
+
+    if (error) {
+      throw new Error(error.message)
+    }
+
     this.state = {
       ...this.state,
-      performance: this.translateToFrench(this.formatDataFromEnv(data)),
+      performance: this.translateToFrench(value),
     }
   }
 

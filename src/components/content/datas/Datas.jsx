@@ -4,6 +4,7 @@ import Grid from './grid/Grid'
 import Greetings from './greetings/Greetings'
 import {StyledDatas} from './Datas.elements'
 import PropTypes from 'prop-types'
+import {useEffect} from 'react'
 
 /**
  * A component that displays data about a user.
@@ -44,6 +45,10 @@ const Datas = () => {
    */
   const userName =
     response?.user.id === +id ? response.user.userInfos.firstName : ''
+
+  useEffect(() => {
+    if (error) console.log(error)
+  }, [error])
 
   return (
     <>
