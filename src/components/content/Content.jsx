@@ -1,7 +1,6 @@
-import Aside from './aside/Aside'
+import {Aside, Datas} from '@/components/index'
+import {AxiosInstanceProvider} from '@/context/apiContext'
 import * as S from './Content.elements'
-import {AxiosInstanceProvider} from '../../context/apiContext'
-import Datas from './datas/Datas'
 
 /**
  * Content is a component that renders the main content of the page.

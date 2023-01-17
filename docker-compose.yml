@@ -1,18 +1,19 @@
-version: "3.8"
+version: '3.8'
 services:
   frontend:
     build:
       context: .
     ports:
-      - "5173:5173"
+      - '5173:5173'
     env_file: .env
     depends_on:
       - backend
+    volumes:
+      - .:/app
   backend:
     build:
       context: ../P12-NodeJs-backend
     volumes:
-      - .:/app
       - ../P12-NodeJs-backend:/app
     ports:
-      - "3000:3000"
+      - '3000:3000'

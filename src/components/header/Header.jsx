@@ -1,6 +1,5 @@
+import {Logo, Navbar} from '@/components/index'
 import {StyledHeader} from './Header.elements'
-import Logo from './logo/Logo'
-import Navbar from './navbar/Navbar'
 
 /**
  * * Header is a component that renders the header of the application. It consists of the SportSee logo and the main navigation bar.

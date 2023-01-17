@@ -5,7 +5,7 @@
   "embeddedLanguageFormatting": "auto",
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
-  "jsxSingleQuote": false,  
+  "jsxSingleQuote": false,
   "printWidth": 80,
   "proseWrap": "always",
   "quoteProps": "as-needed",
@@ -15,5 +15,10 @@
   "tabWidth": 2,
   "trailingComma": "all",
   "useTabs": false,
-  "vueIndentScriptAndStyle": false
+  "vueIndentScriptAndStyle": false,
+  "importOrder": [
+    "(^@|^[A-Za-z])(?!internals)(.*(?<!tyles)$)",
+    "(^[.]|^@internals)(?!^[A-Za-z])(.*(?<!tyles)$)",
+    "tyles"
+  ]
 }

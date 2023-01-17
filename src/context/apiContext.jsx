@@ -1,6 +1,6 @@
 import axios from 'axios'
-import {useRef, createContext} from 'react'
 import PropTypes from 'prop-types'
+import {useRef, createContext} from 'react'
 
 /**
  * AxiosContext is a context object that is used to store an Axios instance. The Axios instance can be accessed by components that are descendants of an `AxiosInstanceProvider` component.

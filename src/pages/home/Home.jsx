@@ -1,4 +1,4 @@
-import Card from '../../card/Card'
+import Card from '@/components/card/Card'
 import {StyledHome} from './Home.elements'
 
 /**

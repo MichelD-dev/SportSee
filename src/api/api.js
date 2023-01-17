@@ -1,9 +1,9 @@
+import {AxiosContext} from '@/context/apiContext'
+import {DataModel} from '@/dataModel/DataModel'
+import {useEffectOnce} from '@/utils/useEffectOnce'
 import axios from 'axios'
-import {useState, useRef, useContext} from 'react'
-import {AxiosContext} from '../context/apiContext'
 import PropTypes from 'prop-types'
-import {useEffectOnce} from '../utils/useEffectOnce'
-import {DataModel} from '../dataModel/DataModel'
+import {useState, useRef, useContext} from 'react'
 
 /**
  * useFetch custom hook.

@@ -1,7 +1,7 @@
-import {ThemeProvider} from 'styled-components'
-import GlobalStyle from './globalStyle'
-import * as S from './components/index'
 import {Outlet} from 'react-router-dom'
+import {ThemeProvider} from 'styled-components'
+import * as S from './components/index'
+import GlobalStyle from './globalStyle'
 
 /**
  * @typedef {Object} Theme

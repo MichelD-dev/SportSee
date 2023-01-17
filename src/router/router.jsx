@@ -1,14 +1,14 @@
+import App from '@/App'
+import * as S from '@/components/index'
+import EmptyPage from '@/pages/emptyPage/EmptyPage'
+import Error404 from '@/pages/error404/Error404'
+import Home from '@/pages/home/Home'
 import React from 'react'
-import * as S from '../components/index'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
 } from 'react-router-dom'
-import App from '../App'
-import EmptyPage from '../pages/emptyPage/EmptyPage'
-import Home from '../pages/home/Home'
-import Error404 from '../pages/error404/Error404'
 
 /**
  * router is a variable that represents a browser router for the application.
