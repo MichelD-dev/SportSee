@@ -1,19 +1,40 @@
 version: '3.8'
 services:
-  frontend:
+  frontend-prod: &frontend
     build:
       context: .
+    profiles: ['prod']
     ports:
       - '5173:5173'
-    env_file: .env
+    # env_file: .env
+    environment:
+      APP_ENV: prod
     depends_on:
-      - backend
+      - server-backend
     volumes:
       - .:/app
-  backend:
+
+  frontend-dev:
+    <<: *frontend
+    profiles: ['dev']
+    environment:
+      APP_ENV: dev
+
+  server-backend:
     build:
       context: ../P12-NodeJs-backend
+    profiles: ['prod']
     volumes:
+    
       - ../P12-NodeJs-backend:/app
     ports:
       - '3000:3000'
+
+  mocked-backend:
+    build:
+      context: .
+    profiles: ['dev']
+    volumes:
+      - .:/app
+    ports:
+      - '4001:4001'
