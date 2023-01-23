@@ -11,7 +11,7 @@
 
 ## Prerequisites
 
-- [NodeJS (**version 18.12**)](https://nodejs.org/en/)
+- [NodeJS (**>=version 14**)](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

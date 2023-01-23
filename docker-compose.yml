@@ -15,26 +15,34 @@ services:
       - .:/app
 
   frontend-dev:
-    <<: *frontend
+    # <<: *frontend
+    build:
+      context: .
     profiles: ['dev']
     environment:
       APP_ENV: dev
+    # depends_on:
+    #   - mocked-backend
+    ports:
+      - '5173:5173'
+      - '4001:4001'
+    volumes:
+      - .:/app
 
   server-backend:
     build:
       context: ../P12-NodeJs-backend
     profiles: ['prod']
     volumes:
-    
       - ../P12-NodeJs-backend:/app
     ports:
       - '3000:3000'
 
-  mocked-backend:
-    build:
-      context: .
-    profiles: ['dev']
-    volumes:
-      - .:/app
-    ports:
-      - '4001:4001'
+  # mocked-backend:
+  #   build:
+  #     context: .
+  #   profiles: ['dev']
+  #   volumes:
+  #     - .:/app
+  #   ports:
+  #     - '4001:4001'

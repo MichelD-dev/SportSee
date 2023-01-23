@@ -14,7 +14,7 @@ RUN yarn install --immutable --immutable-cache --check-cache
 
 COPY . .
 
-EXPOSE 5173
-EXPOSE 4001
+EXPOSE 5173 4001
+# EXPOSE 4001
 
 CMD yarn $APP_ENV && tail -f /dev/null
