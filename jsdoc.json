@@ -8,7 +8,7 @@
     "includePattern": ".+\\.js(doc|x)?$",
     "excludePattern": "(node_modules/|docs)"
   },
-  "plugins": ["plugins/markdown", "better-docs/component"],
+  "plugins": ["plugins/markdown", "node_modules/better-docs/component"],
   "templates": {
     "cleverLinks": true,
     "monospaceLinks": true,
@@ -19,6 +19,8 @@
   "opts": {
     "recurse": true,
     "encoding": "utf8",
-    "destination": "./docs/"
+    "destination": "./docs/",
+    "readme": "./README.md",
+    "template": "./node_modules/better-docs/"
   }
 }

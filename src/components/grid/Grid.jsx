@@ -15,7 +15,7 @@ A component that displays a grid of data and graphs.
 @param {number} props.user.todayScore - The user's score for today.
 @param {number} props.user.score - The user's overall score.
 @param {Object} props.user.keyData - An object containing data about the user's key data.
-@param {number} props.performance - An object containing data about the user's performanceormance.
+@param {Object} props.performance - An object containing data about the user's performanceormance.
 @param {number} props.performance.userId - The ID of the user.
 @param {Object} props.performance.kind - An object containing the types of data being displayed.
 @param {string} props.performance.kind.x - The type of data being displayed on the x-axis.

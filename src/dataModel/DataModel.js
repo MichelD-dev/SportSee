@@ -178,7 +178,6 @@ export class DataModel {
     if (error) {
       throw new Error(error.message)
     }
-
     this.state = {
       ...this.state,
       performance: this.translateToFrench(value),

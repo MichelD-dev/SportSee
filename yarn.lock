@@ -5842,6 +5842,7 @@ eslint-plugin-react@latest:
     recharts: ^2.1.16
     styled-components: ^5.3.6
     styled-reset: ^4.4.2
+    taffydb: ^2.7.3
     vite: ^3.2.3
   languageName: unknown
   linkType: soft
@@ -6034,6 +6035,13 @@ eslint-plugin-react@latest:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"taffydb@npm:^2.7.3":
+  version: 2.7.3
+  resolution: "taffydb@npm:2.7.3"
+  checksum: 40b1c3d463c9479e1b7154018eee5da8725ce46bfbe88be9bce1f84a73459280d79cbef7a597446997bcbf66372251257981e7578b882755dedbd8e203f4e6e0
   languageName: node
   linkType: hard
 
