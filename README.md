@@ -121,4 +121,7 @@ Ouvrir le navigateur à l'adresse: http://localhost:5173/
 ## Contact:
 Michel DELAUNAY - delaunaymichel@hotmail.fr  
 
+## Linkedin:
+https://www.linkedin.com/in/michel-delaunay/
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
